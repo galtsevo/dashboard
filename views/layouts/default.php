@@ -76,25 +76,51 @@
 
 <!--    --><?php //echo $content;?>
 
-    <footer class="site-footer">
+    <footer>
         <div class="container">
-            <p class="copyright">© Oleg, 2022</p>
-            <ul class="navigation-list">
-                <li><a href="catalog.php">Каталог</a></li>
-                <li><a href="delivery.html">Доставка</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-            <ul class="social-list">
-                <li>
-                    <a class="social-link-twitter" href="https://twitter.com">
-                    </a>
-                </li>
-                <li>
-                    <a class="social-link-instagram" href="https://instagram.com">
-                    </a>
-                </li>
-            </ul>
+            <div class="row">
+                <div style="bottom: 1em" class="col-md-2 col-xs-12"><a href="" class="logo-box"><img src="/files/pics/logo.png" alt=""></a></div>
+                <div class="col-md-3 col-xs-6">
+                    <p>г.Чехов, Симферопольское шоссе, стр.6 ТЦ "Губернский", оф.202-203</p>
+                </div>
+                <div class="col-md-3 col-xs-6">
+                    <div class="tel">
+                        <span>Тел.</span>
+                        <div class="ya-phone-1"><a href="tel:+79162777997">+7 (916)-277-79-97</a></div>
+                        <!--<div class=><a href="tel:8(495)9610987"><span>+7 (495)</span> 961 09 87</a></div>-->
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="email">
+                        <a href="mailto:aristo@yandex.ru">aristo@yandex.ru</a>
+                    </div>
+                    <a href="#callback" class="btn popup-with-form"><i class="sprite sprite-phone"></i> Обратная связь</a>
+                </div>
+            </div>
         </div>
+        <script src="callibri/callibri.js" type="text/javascript" charset="utf-8"></script>
     </footer>
+
+<!--    <footer class="site-footer">-->
+<!--        <div class="container">-->
+<!--            <p class="copyright">© Oleg, 2022</p>-->
+<!--            <ul class="navigation-list">-->
+<!--                <li><a href="catalog.php">Каталог</a></li>-->
+<!--                <li><a href="delivery.html">Доставка</a></li>-->
+<!--                <li><a href="contacts.html">Контакты</a></li>-->
+<!--            </ul>-->
+<!--            <ul class="social-list">-->
+<!--                <li>-->
+<!--                    <a class="social-link-twitter" href="https://twitter.com">-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a class="social-link-instagram" href="https://instagram.com">-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </footer>-->
+
 </body>
 </html>

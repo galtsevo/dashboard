@@ -147,6 +147,24 @@ header p {
     background-position: -131px -61px;
 }
 
+.sprite-image {
+    width: 23px;
+    height: 18px;
+    background-position: -5px -61px;
+}
+
+.sprite-calc_g {
+    width: 17px;
+    height: 20px;
+    background-position: -32px -5px;
+}
+
+.sprite-ruler_s {
+    width: 23px;
+    height: 14px;
+    background-position: -125px -108px;
+}
+
 .header-top-phone {
     margin-top: 0.6em;
 }
@@ -353,6 +371,112 @@ span.price:empty::after,
     color: #845927;
 }
 
+.item {
+    position: relative;
+    /*height: calc(100% - 75px);*/
+    margin-top: 55px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+}
+
+.item > a, .almost-item > a {
+    display: block;
+    color: inherit;
+}
+
+.item h3, .almost-item h3 {
+    padding-left: 35px;
+    font-weight: 500;
+    position: absolute;
+    z-index: 2;
+    top: -55px;
+    text-transform: uppercase;
+    left: 0;
+    font-size: 18px;
+    right: 0;
+    margin: 14px 0;
+}
+
+.item h3 i, .almost-item h3 i {
+    position: absolute;
+    /*top: 6px;*/
+    transition: all .3s;
+    left: 0;
+    margin-right: 12px;
+}
+
+.item .img-wrap, .almost-item .img-wrap {
+    position: relative;
+    top: -1px;
+    left: -1px;
+    width: calc(100% + 2px);
+}
+
+.item .img-wrap img, .almost-item .img-wrap img {
+    width: 100%;
+
+    object-fit: cover;
+    /*width: 280px;*/
+    height: 250px;
+}
+
+.sprite-right_o {
+    width: 24px;
+    height: 17px;
+    background-position: -5px -108px;
+}
+
+.btnpdr {
+    display: block;
+    background: none;
+    transition: all .1s;
+    border: 1px solid #72bf44;
+    color: #72bf44;
+    text-align: center;
+    padding: 3px 15px;
+}
+
+.tags {
+    font-size: 0;
+    margin: 10px 15px;
+}
+
+.tags a {
+    display: inline-block;
+    vertical-align: top;
+    /*width: 50%;*/
+    color: #000;
+    font-size: 15px;
+    padding: 3px 5px;
+}
+
+.tags a i {
+    margin-right: 8px;
+}
+
+.offer {
+    margin-top: 10px;
+    position: relative;
+    display: block;
+}
+
+.offer h3 {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    left: 0;
+    margin: 0;
+    padding: 0 20px;
+    right: 0;
+    color: #000;
+    transition: all .3s;
+    text-transform: uppercase;
+}
+
+.offer img {
+    width: 100%;
+}
+
 .contacts img,
 .item img {
     display: flex;
@@ -534,11 +658,29 @@ a:hover{
     text-decoration: none;
     color: #72bf44;
 }
-/*
 
 
 
- */
+a div{
+    background: #000;  /* У блока, оборачивающего картинку при наведении будет просвечивать черный фон */
+    /*overflow: hidden;  !* Ограничиваем видиую область *!*/
+}
+a div img{
+    opacity: 1;
+    transition: opacity 124ms linear, transform 124ms linear;  /* Плавное изменение прозрачности и увеличения */
+    width: 100%;
+    height: auto;
+    display: block; /* Убираем полосу под картинкий */
+}
+a:hover div img{
+    opacity: 0.7; /* Высветляем картинку, но она становится темнее, так как под ней черный фон */
+    /*transform: scale(.95); !* Увеличение картинки *!*/
+}
+/*a + a div{*/
+/*    background: #fff; !* Если необходимо высветление картинки при наведении, оборачивающий div должен иметь белый фон *!*/
+/*}*/
+
+
 
 .left-margin {
     margin: 0 .5em 0 0;
@@ -558,4 +700,54 @@ a:hover{
 
 .modal-footer {
     text-align: center !important;
+}
+
+.about {
+    margin: 50px 0;
+}
+
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.carousel h2, .about h2 {
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+footer {
+    border-top: 1px solid #dcdcdc;
+}
+
+.logo-box {
+    display: inline-block;
+    margin: 15px 0;
+}
+
+footer p {
+    font-size: 14px;
+    margin: 45px 0 25px;
+}
+
+footer .tel {
+    margin: 45px 0 0;
+}
+
+header .btn, footer .btn {
+    vertical-align: top;
+    margin: 4px 0;
+}
+
+footer .email {
+    margin-top: 30px;
+}
+
+.tel a {
+    display: block;
+    color: inherit;
+    font-size: 18px;
 }
