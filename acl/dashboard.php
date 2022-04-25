@@ -1,8 +1,7 @@
 <?php
 return [
     'all' => [
-        'index',
-        'delivery'
+        'index'
     ],
     'authorize' => [
 

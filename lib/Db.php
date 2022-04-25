@@ -10,7 +10,7 @@ class Db
     public function __construct(){
         $config = require 'config/db.php';
         $this->db = new PDO("mysql:host=" . $config['host'] . ";dbname=" . $config['dbname'], $config['user'], $config['password']);
-//        debug($config);
+//        debug($this->db);
     }
 
     public function query($sql, $params = []){
@@ -28,6 +28,7 @@ class Db
 
     public function row($sql, $params = []){
         $result = $this->query($sql, $params);
+//        debug($result);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
 

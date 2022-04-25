@@ -1,7 +1,8 @@
 <?php
 return [
     'all' => [
-        'index'
+        'index',
+        'reenterAllRetakesAndComissions',
     ],
     'authorize' => [
 

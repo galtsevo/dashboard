@@ -8,7 +8,7 @@ class Router
 {
     protected $routes = [];
     protected $params = [];
-    protected $local = 'aristo';
+    protected $local = 'http://dashboard.bsu-eis.ru/';
 
     public function __construct(){
         $arr = require 'config/routes.php';
@@ -21,13 +21,14 @@ class Router
     public function add($route, $params){
         $route = preg_replace('/{([a-z]+):([^\}]+)}/', '(?P<\1>\2)', $route);
         $route = '#^'.$route.'$#';
+//        debug($route);
         $this->routes[$route] = $params;
     }
 
     public function match(){
-        $url = trim($_SERVER['REQUEST_URI'], $this->local.'/');
-//        $url = trim($_SERVER['REQUEST_URI'], '/');
-        //debug($this->routes);
+//        $url = trim($_SERVER['REQUEST_URI'], $this->local.'/');
+        $url = trim($_SERVER['REQUEST_URI'], '/');
+//        debug($url);
         foreach ($this->routes as $route => $params){
             if(preg_match($route, $url, $matches)){
                 foreach ($matches as $key => $match) {
@@ -38,6 +39,7 @@ class Router
                         $params[$key] = $match;
                     }
                 }
+
                 $this->params = $params;
                 return true;
             }
@@ -46,9 +48,11 @@ class Router
     }
 
     public function run(){
+//        debug($this->match());
         if($this->match()){
 //            echo '<p> Router Найден </p><br>';
             $path = '\controllers\\'.ucfirst($this->params['controller']).'Controller';
+//            debug(__DIR__);
             if(class_exists($path)){
 
                 $action = $this->params['action'].'Action';
@@ -60,6 +64,7 @@ class Router
                     $controller = new $path($this->params);
                     $controller->$action();
                 }else{
+//                    debug($this);
                     View::errorCode(404);
                     echo '<p> Не найден экшен</p> <br>'.$action;
                 }

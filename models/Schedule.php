@@ -3,17 +3,24 @@
 namespace models;
 use core\Model;
 
-class Main extends Model
+class Schedule extends Model
 {
-    public function getItems(){
-        $result = $this->db->row("SELECT id, title, path, idtype FROM catalog_item");
+    /*
+     * Вывод меню
+     */
+    public function showLinks(){
+        $result = $this->db->row("SELECT * FROM mdl_bsu_dashboard_menu");
         return $result;
 
     }
 
-    public function getCatalogType(){
-        $result = $this->db->row("SELECT id, title, path FROM catalog_type");
+    /*
+     * Обновить даты пересдач и комиссий в расписании ИнфоБелГУ: Учебный процесс
+     */
+    public function reenterAllRetakesAndComissions(){
+        $result = $this->db->row("SELECT id, title, path, idtype FROM catalog_item");
         return $result;
+
     }
 
 }

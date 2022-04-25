@@ -9,6 +9,6 @@ use core\Router;
 spl_autoload_register('autoload');
 
 session_start();
-
+//debug($_SERVER['REQUEST_URI']);
 $router = new Router;
 $router->run();

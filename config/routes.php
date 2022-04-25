@@ -1,43 +1,20 @@
 <?php
 
 return [
+
     '' => [
-        'controller' => 'main',
+        'controller' => 'dashboard',
         'action' => 'index',
     ],
 
-    'delivery' => [
-        'controller' => 'delivery',
+    'schedule' => [
+        'controller' => 'schedule',
         'action' => 'index',
     ],
 
-    'catalog/type/{id:\d+}' => [
-        'controller' => 'catalog',
-        'action' => 'type',
+    'schedule/reenterAllRetakesAndComissions' => [
+        'controller' => 'schedule',
+        'action' => 'reenterAllRetakesAndComissions',
     ],
 
-    'account/login' => [
-        'controller' => 'account',
-        'action' => 'login',
-    ],
-
-    'news/show' => [
-        'controller' => 'news',
-        'action' => 'show',
-    ],
-
-    'delivery/show' => [
-        'controller' => 'delivery',
-        'action' => 'show',
-    ],
-
-    'contacts' => [
-        'controller' => 'main',
-        'action' => 'contacts',
-    ],
-
-    'main/catalog' => [
-        'controller' => 'main',
-        'action' => 'catalog',
-    ],
 ];
