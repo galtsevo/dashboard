@@ -12,6 +12,11 @@ return [
         'action' => 'index',
     ],
 
+    'schedule/reenterAllRetakesAndComissionsOneEvent' => [
+        'controller' => 'schedule',
+        'action' => 'reenterAllRetakesAndComissionsOneEvent',
+    ],
+
     'schedule/reenterAllRetakesAndComissions' => [
         'controller' => 'schedule',
         'action' => 'reenterAllRetakesAndComissions',

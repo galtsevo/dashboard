@@ -18,6 +18,7 @@ abstract class Controller
 //        debug($this->checkAcl());
         $this->view = new View($route);
         $this->model = $this->loadModel($route['controller']);
+
     }
 
     public function loadModel($name){
