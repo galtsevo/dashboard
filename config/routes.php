@@ -22,4 +22,9 @@ return [
         'action' => 'reenterAllRetakesAndComissions',
     ],
 
+    'schedule/reenterAllZach' => [
+        'controller' => 'schedule',
+        'action' => 'reenterAllZach',
+    ],
+
 ];

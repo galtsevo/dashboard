@@ -4,6 +4,7 @@ return [
         'index',
         'reenterAllRetakesAndComissions',
         'reenterAllRetakesAndComissionsOneEvent',
+        'reenterAllZach'
     ],
     'authorize' => [
 

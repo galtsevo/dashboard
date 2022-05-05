@@ -10,7 +10,6 @@ use models\User;
 
 class ScheduleController extends Controller
 {
-//
     public function indexAction(){
         $result = $this->model->showLinks();
         $vars = [
@@ -19,6 +18,78 @@ class ScheduleController extends Controller
         ];
 
         $this->view->render('Главная страница', $vars);
+    }
+
+    /*
+ * Обновить выставленные пересдачи и комиссии (без одноразовых)
+ */
+    public function reenterAllZachAction(){
+        $params = [
+            'edworkindid' => '4,5,6,36,39,53,9998,9999',
+//            'edworkindid' => '5',
+            'datestart' => 1654035904,//time(),
+            'deleted' => 0,
+            'departmentcode'=>'10900, 10305, 19000, 19206, 19207, 19208'
+        ];
+        $pairs = $this->model->getSchedule($params);
+//        debug($pairs);
+        foreach ($pairs as $pair){
+//            debug($pair);
+            $group = $this->model->getGroup(array('id'=>$pair['groupid']));
+            if($group['endyear'] != 2022){
+
+
+//                debug($pairs);
+//                echo  $pair['id'].'+++'.$pair['groupid'].'<br>';
+                echo $group['name'].' completed<br>';
+                $post = array();
+                $post['pardop'] = 5; // Номер пары для пересдачи и комиссии
+                $post['replaceid'] = $pair['replaceid'];
+                $post['inroom'] = $pair['inroom'];
+                $post['textinroom'] = $pair['textinroom'];
+                $post['hour_start'] = date('H', $pair['timestart']) ;
+                $post['minute_start'] = date('i', $pair['timestart']) ;
+                $post['hour_end'] = date('H', $pair['timeend']) ;
+                $post['minute_end'] = date('i', $pair['timeend']) ;
+
+                $teacher = new TeacherController($pair);
+                $post['teacher'] = $teacher->getFullname().', '.$teacher->getEmail();
+
+                $post['tw'] =  $pair['periodweek'];
+                $post['startdata'] =  date('d.m.Y', $pair['datestart']).' - '.'blablabla';
+                $post['peresdacha'] = 1;
+                $post['saveschedule'] = 'Сохранить';
+                $post['pol'] = 2;
+                $post['fid'] = $pair['departmentcode'];
+                $post['gid'] = $pair['groupid'];
+                $post['id'] = $pair['id'];
+                $post['mid'] = 0;
+                $post['yid'] = 22;
+                $post['term'] = $pair['term'];
+                $post['did1'] = 0;
+                $post['view'] = 0;
+                $post['par'] = $pair['pairid'];
+                $post['tid'] = 0;
+                $post['wid'] = $pair['weekday'];
+                $post['this_practice'] = '';
+                $post['eid'] = $pair['edworkindid'];
+                $post['did'] = $pair['disciplineid'];
+                $post['idr'] = $pair['roomid'];
+                $post['sgid'] = $pair['subgroupid'];
+                $post['sesskey'] = 'H9rS577gkH';
+                $post['no_seat'] = 0;
+                $post['online'] = $pair['online'];
+                $post['mook'] = $pair['mook'];
+                $post['action'] = 'reload';
+
+//                if ($group['name'] == '03011927')
+//                    debug($post);
+                $url = 'https://dekanat.bsu.edu.ru/blocks/bsu_schedule/edit/editpair.php';
+//                echo $aaa = curl($url, $post);
+                curl($url, $post);
+            }
+        }
+//        debug($result);
     }
 
     /*
@@ -31,26 +102,35 @@ class ScheduleController extends Controller
             'deleted' => 0,
             'departmentcode'=>'10305, 19000, 19206, 19207, 19208',
             'pairid'=>5
-            ,'id'=>13833571
         ];
         $pairs = $this->model->getSchedule($params);
-
+//debug($pairs);
         foreach ($pairs as $pair){
-
+//debug($pair);
             $post = array();
 
             $post['replaceid'] = $pair['replaceid'];
             $post['inroom'] = $pair['inroom'];
             $post['textinroom'] = $pair['textinroom'];
-            $post['hour_start'] = 15;//date('H', $pair['timestart']) ;
-            $post['minute_start'] = 45;//date('i', $pair['timestart']) ;
-            $post['hour_end'] = 17;//date('H', $pair['timeend']) ;
-            $post['minute_end'] = 20;//date('i', $pair['timeend']) ;
+            $post['hour_start'] = 15;
+            $post['minute_start'] = 45;
+            $post['hour_end'] = 17;
+            $post['minute_end'] = 20;
+
+//            $post['hour_start'] = 17;
+//            $post['minute_start'] = 30;
+//            $post['hour_end'] = 19;
+//            $post['minute_end'] = 05;
 
             $teacher = new TeacherController($pair);
             $post['teacher'] = $teacher->getFullname().', '.$teacher->getEmail();
 
             $post['tw'] =  $pair['periodweek'];
+
+            if($pair['datestart'] == 1662022800 || $pair['datestart']==1662109200){
+                $pair['datestart'] = 1662368400;
+            }
+
             $post['day'] = date('d', $pair['datestart']) ;
             $post['month'] = date('m', $pair['datestart']) ;
             $post['year'] = date('Y', $pair['datestart']) ;
@@ -71,17 +151,20 @@ class ScheduleController extends Controller
             $post['eid'] = $pair['edworkindid'];
             $post['did'] = $pair['disciplineid'];
             $post['idr'] = $pair['roomid'];
-            $post['sgid'] = 0;
+//            $post['sgid'] = 0;
+            $post['sgid'] = $pair['subgroupid'];
             $post['sesskey'] = 'Q6aSeiHgNm';
             $post['no_seat'] = 0;
             $post['online'] = $pair['online'];
             $post['mook'] = $pair['mook'];
             $post['action'] = 'reload';
-//            debug($post);
+//            debug($pair['datestart']);
 //var_dump($pair);
             $url = 'https://dekanat.bsu.edu.ru/blocks/bsu_schedule/edit/editpair.php';
-            echo $aaa=curl($url, $post);
+//            echo $aaa=curl($url, $post);
+            curl($url, $post);
         }
+//        header('/'.$this->route['controller']);
     }
 
     /*
